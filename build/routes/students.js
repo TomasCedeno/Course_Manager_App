@@ -27,8 +27,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const express_validator_1 = require("express-validator");
 const studentServices = __importStar(require("../services/studentServices"));
-const studentParser_1 = __importDefault(require("../utils/studentParser"));
 const router = express_1.default.Router();
 router.get('/', (_req, res) => {
     res.send(studentServices.getStudents());
@@ -37,14 +37,23 @@ router.get('/:code', (req, res) => {
     const student = studentServices.findByCode(+req.params.code);
     return (student != null) ? res.send(student) : res.sendStatus(404);
 });
-router.post('/', (req, res) => {
-    try {
-        const newStudent = (0, studentParser_1.default)(req.body);
-        const addedStudent = studentServices.addStudent(newStudent);
-        res.json(addedStudent);
+const codeAlreadyExist = value => {
+    const student = studentServices.findByCode(value);
+    if (student) {
+        return Promise.reject('Student code already exists');
     }
-    catch (e) {
-        res.status(400).send(e.message);
+    return true;
+};
+router.post('/', (0, express_validator_1.body)('code').isNumeric().custom(codeAlreadyExist), (0, express_validator_1.body)('name').isString(), (0, express_validator_1.body)('lastName').isString(), (req, res) => {
+    const errors = (0, express_validator_1.validationResult)(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
+    const newStudent = studentServices.addStudent({
+        code: req.body.code,
+        name: req.body.name,
+        lastName: req.body.lastName
+    });
+    return res.json(newStudent);
 });
 exports.default = router;

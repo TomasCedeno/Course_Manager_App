@@ -10,13 +10,22 @@ router.get('/', (_req, res)=>{
     res.send(courseServices.getCourses())
 })
 
+const idAlreadyExist: CustomValidator = value => {
+    const course = courseServices.findById(value)
+    if (course){
+        return Promise.reject('Id already exists')
+    }
+
+    return true;
+}
+
 const isTypeCourse: CustomValidator = value => {
     return Object.values(TypeCourse).includes(value)
 }
 
 router.post(
     '/',
-    body('id').isNumeric(),
+    body('id').isNumeric().custom(idAlreadyExist),
     body('name').isAlpha(),
     body('typeCourse').custom(isTypeCourse),
     body('credits').isNumeric(),

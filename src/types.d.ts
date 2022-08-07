@@ -10,7 +10,7 @@ export interface Student {
     }[]
 }
 
-export type NewStudent = Omit<Student, 'code', 'grades'>
+export type NewStudent = Omit<Student, 'grades'>
 
 export interface Course {
     id: number,

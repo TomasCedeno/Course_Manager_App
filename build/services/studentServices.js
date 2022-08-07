@@ -9,13 +9,13 @@ const students = students_json_1.default;
 const getStudents = () => students;
 exports.getStudents = getStudents;
 const findByCode = (code) => {
-    const entry = students.find(s => s.code === code);
-    return entry;
+    const student = students.find(s => s.code === code);
+    return student;
 };
 exports.findByCode = findByCode;
-const addStudent = (newStudent) => {
-    const newStudentEntry = Object.assign({ code: Math.max(...students.map(s => s.code)) + 1 }, newStudent);
-    students.push(newStudentEntry);
-    return newStudentEntry;
+const addStudent = (newStudentEntry) => {
+    const newStudent = Object.assign(Object.assign({}, newStudentEntry), { grades: [] });
+    students.push(newStudent);
+    return newStudent;
 };
 exports.addStudent = addStudent;

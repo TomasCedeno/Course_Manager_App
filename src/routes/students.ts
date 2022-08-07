@@ -1,5 +1,5 @@
 import express from 'express'
-import { body, validationResult } from 'express-validator'
+import { body, validationResult, CustomValidator } from 'express-validator'
 
 import * as studentServices from '../services/studentServices'
 
@@ -15,8 +15,18 @@ router.get('/:code', (req, res)=>{
     return (student != null) ? res.send(student) : res.sendStatus(404)
 })
 
+const codeAlreadyExist: CustomValidator = value => {
+    const student = studentServices.findByCode(value)
+    if (student){
+        return Promise.reject('Student code already exists')
+    }
+
+    return true;
+}
+
 router.post(
-    '/', 
+    '/',
+    body('code').isNumeric().custom(codeAlreadyExist),
     body('name').isString(),
     body('lastName').isString(),
 
@@ -27,6 +37,7 @@ router.post(
         }
 
         const newStudent = studentServices.addStudent({
+            code: req.body.code,
             name: req.body.name,
             lastName: req.body.lastName
         })
