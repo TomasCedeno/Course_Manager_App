@@ -1,8 +1,8 @@
 import coursesData from '../database/courses.json'
-import { CourseEntry } from '../types'
+import { Course } from '../types'
 
-const courses: Array<CourseEntry> = coursesData as Array<CourseEntry>
+const courses: Array<Course> = coursesData as Array<Course>
 
-export const getEntries = (): Array<CourseEntry> => courses
+export const getEntries = (): Array<Course> => courses
 
 export const addEntry = (): undefined => undefined
