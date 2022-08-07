@@ -10,13 +10,14 @@ export const findByCode = (code: number): Student | undefined => {
     return entry
 } 
 
-export const addStudent = (newStudent: NewStudent): Student => {
-    const newStudentEntry = {
+export const addStudent = (newStudentEntry: NewStudent): Student => {
+    const newStudent = {
         code: Math.max(...students.map(s => s.code)) + 1,
-        ...newStudent
+        ...newStudentEntry,
+        grades: []
     }
 
-    students.push(newStudentEntry)
+    students.push(newStudent)
 
-    return newStudentEntry
+    return newStudent
 }

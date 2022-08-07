@@ -1,3 +1,5 @@
+import { TypeCourse } from "./enums"
+
 export interface Student {
     code: number,
     name: string,
@@ -9,12 +11,6 @@ export interface Student {
 }
 
 export type NewStudent = Omit<Student, 'code', 'grades'>
-
-
-export enum TypeCourse {
-    Theo = 'teórico',
-    TheoPrac = 'teórico-práctico'
-}
 
 export interface Course {
     id: number,
