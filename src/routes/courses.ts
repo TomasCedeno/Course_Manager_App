@@ -2,7 +2,7 @@ import express from 'express'
 import { body, CustomValidator, validationResult } from 'express-validator'
 
 import * as courseServices from '../services/courseServices'
-import { TypeCourse } from '../enums'
+import { TypeCourse } from '../models/enums'
 
 const router = express.Router()
 
@@ -26,7 +26,7 @@ const isTypeCourse: CustomValidator = value => {
 router.post(
     '/',
     body('id').isNumeric().custom(idAlreadyExist),
-    body('name').isAlpha(),
+    body('name').isString(),
     body('typeCourse').custom(isTypeCourse),
     body('credits').isNumeric(),
 

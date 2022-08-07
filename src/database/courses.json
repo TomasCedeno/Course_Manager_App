@@ -2,27 +2,27 @@
     {
         "id": 1,
         "name": "Ecuaciones Diferenciales",
-        "type": "teórico",
+        "typeCourse": "teórico",
         "credits": 3,
         "students": [
-            {"code": 20211020095, "grade": 4.1},
-            {"code": 20211020096, "grade": 4},
-            {"code": 20211020097, "grade": 3.9},
-            {"code": 20211020098, "grade": 3.8},
-            {"code": 20211020099, "grade": 3.7}
+            {"studentCode": 20211020095, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
+            {"studentCode": 20211020096, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
+            {"studentCode": 20211020097, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
+            {"studentCode": 20211020098, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
+            {"studentCode": 20211020099, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4}
         ]
     },
     {
         "id": 2,
-        "name": "Programacion Avanzada",
+        "name": "Programación Avanzada",
         "typeCourse": "teórico-práctico",
         "credits": 3,
         "students": [
-            {"code": 20211020095, "grade": 4.6},
-            {"code": 20211020096, "grade": 4.5},
-            {"code": 20211020097, "grade": 4.4},
-            {"code": 20211020098, "grade": 4.3},
-            {"code": 20211020099, "grade": 4.2}
+            {"studentCode": 20211020095, "grade1": 4, "grade2": 4, "grade3": 4, "lab": 4, "finalGrade": 4},
+            {"studentCode": 20211020096, "grade1": 4, "grade2": 4, "grade3": 4, "lab": 4, "finalGrade": 4},
+            {"studentCode": 20211020097, "grade1": 4, "grade2": 4, "grade3": 4, "lab": 4, "finalGrade": 4},
+            {"studentCode": 20211020098, "grade1": 4, "grade2": 4, "grade3": 4, "lab": 4, "finalGrade": 4},
+            {"studentCode": 20211020099, "grade1": 4, "grade2": 4, "grade3": 4, "lab": 4, "finalGrade": 4}
         ]
     }
 ]
