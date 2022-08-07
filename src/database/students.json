@@ -1,0 +1,48 @@
+[
+    {
+        "code": 20211020095,
+        "name": "Tomás",
+        "lastName": "Cedeño",
+        "grades": [
+            {"courseName": "Ecuaciones Diferenciales", "grade":4.1},
+            {"courseName": "Programación Avanzada", "grade":4.6}
+        ]
+    },
+    {
+        "code": 20211020096,
+        "name": "Julian",
+        "lastName": "Pardo",
+        "grades": [
+            {"courseName": "Ecuaciones Diferenciales", "grade":4.0},
+            {"courseName": "Programación Avanzada", "grade":4.5}
+        ]
+    },
+    {
+        "code": 20211020097,
+        "name": "Lucas",
+        "lastName": "Salazar",
+        "grades": [
+            {"courseName": "Ecuaciones Diferenciales", "grade":3.9},
+            {"courseName": "Programación Avanzada", "grade":4.4}
+        ]
+    },
+    {
+        "code": 20211020098,
+        "name": "Luisa",
+        "lastName": "Caviedes",
+        "grades": [
+            {"courseName": "Ecuaciones Diferenciales", "grade":3.8},
+            {"courseName": "Programación Avanzada", "grade":4.3}
+        ]
+    },
+    {
+        "code": 20211020099,
+        "name": "Sara",
+        "lastName": "Balcazar",
+        "grades": [
+            {"courseName": "Ecuaciones Diferenciales", "grade":3.7},
+            {"courseName": "Programación Avanzada", "grade":4.2}
+        ]
+    }
+
+]
