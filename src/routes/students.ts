@@ -99,16 +99,18 @@ router.delete(
 )
 //#endregion
 
+
 //#region OBTNER 10 ESTUDIANTES CON MEJOR PROMEDIO
 router.get('/best', (_req, res)=>{
     res.send(studentServices.getBestStudents())
 })
 //#endregion
+
+
+//#region ESTUDIANTES QUE NO ESTAN INSCRITOS EN NINGUN CURSO
 router.get('/not-enrolled', (_req, res)=>{
     res.send(studentServices.getNotEnrolledStudents())
 })
-//#region ESTUDIANTES QUE NO ESTAN INSCRITOS EN NINGUN CURSO
-
 //#endregion
 
 export default router

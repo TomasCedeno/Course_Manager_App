@@ -117,10 +117,4 @@ router.patch(
 //#endregion
 
 
-//#region OBTENER INFORMACION COMPLETA DE TODOS LOS CURSOS, ESTUDINTES, NOTAS
-router.get('/all', (_req, res)=>{
-    res.send(gradeServices.getAllInfo())
-})
-//#endregion
-
 export default router

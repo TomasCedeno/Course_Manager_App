@@ -30,13 +30,12 @@ const express_1 = __importDefault(require("express"));
 const express_validator_1 = require("express-validator");
 const studentServices = __importStar(require("../services/studentServices"));
 const router = express_1.default.Router();
+//#region OBTENER A TODOS LOS ESTUDIANTES
 router.get('/', (_req, res) => {
     res.send(studentServices.getStudents());
 });
-router.get('/:code', (req, res) => {
-    const student = studentServices.findByCode(+req.params.code);
-    return (student != null) ? res.send(student) : res.sendStatus(404);
-});
+//#endregion
+//#region CREAR UN  ESTUDIANTE
 const codeAlreadyExist = value => {
     const student = studentServices.findByCode(value);
     if (student) {
@@ -56,4 +55,46 @@ router.post('/', (0, express_validator_1.body)('code').isNumeric().custom(codeAl
     });
     return res.json(newStudent);
 });
+//#endregion
+//#region MODIFICAR NOMBRE Y APELLIDOS DE UN ESTUDIANTE
+const studentExist = value => {
+    const student = studentServices.findByCode(+value);
+    if (!student) {
+        return Promise.reject('Student does not exists');
+    }
+    return true;
+};
+router.patch('/', (0, express_validator_1.body)('code').isNumeric().custom(studentExist), (0, express_validator_1.body)('name').isString(), (0, express_validator_1.body)('lastName').isString(), (req, res) => {
+    const errors = (0, express_validator_1.validationResult)(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const updatedStudent = studentServices.updateStudent({
+        code: req.body.code,
+        name: req.body.name,
+        lastName: req.body.lastName
+    });
+    return res.json(Object.assign({}, updatedStudent));
+});
+//#endregion
+//#region ELIMINAR ESTUDIANTE
+router.delete('/:code', (0, express_validator_1.param)('code').custom(studentExist), (req, res) => {
+    const errors = (0, express_validator_1.validationResult)(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const deletedStudent = studentServices.deleteStudent(+req.params.code);
+    return res.json(Object.assign({}, deletedStudent));
+});
+//#endregion
+//#region OBTNER 10 ESTUDIANTES CON MEJOR PROMEDIO
+router.get('/best', (_req, res) => {
+    res.send(studentServices.getBestStudents());
+});
+//#endregion
+//#region ESTUDIANTES QUE NO ESTAN INSCRITOS EN NINGUN CURSO
+router.get('/not-enrolled', (_req, res) => {
+    res.send(studentServices.getNotEnrolledStudents());
+});
+//#endregion
 exports.default = router;

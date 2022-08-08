@@ -5,11 +5,11 @@
         "typeCourse": "teórico",
         "credits": 3,
         "students": [
-            {"studentCode": 20211020095, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
+            {"studentCode": 20211020095, "grade1": 3, "grade2": 3, "grade3": 3, "finalGrade": 3},
             {"studentCode": 20211020096, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
-            {"studentCode": 20211020097, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
-            {"studentCode": 20211020098, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4},
-            {"studentCode": 20211020099, "grade1": 4, "grade2": 4, "grade3": 4, "finalGrade": 4}
+            {"studentCode": 20211020097, "grade1": 5, "grade2": 5, "grade3": 5, "finalGrade": 5},
+            {"studentCode": 20211020098, "grade1": 1, "grade2": 1, "grade3": 1, "finalGrade": 1},
+            {"studentCode": 20211020099, "grade1": 2, "grade2": 2, "grade3": 2, "finalGrade": 2}
         ]
     },
     {

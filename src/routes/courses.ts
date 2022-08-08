@@ -105,4 +105,38 @@ router.delete(
 )
 //#endregion
 
+
+//#region OBTENER UN CURSO CON ESTUDIANTES ORDENADOS POR MEJOR NOTA
+router.get(
+    '/sorted/:courseId',
+    param('courseId').isNumeric().custom(courseExists),
+
+    (req: express.Request, res: express.Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+
+        return res.json( courseServices.getSortedCourse(+req.params.courseId) )
+    }
+)
+//#endregion
+
+
+//#region OBTENER ESTUDIANTES DE UN CURSO CON NOTAS MENORES A 3
+router.get(
+    '/failing/:courseId',
+    param('courseId').isNumeric().custom(courseExists),
+
+    (req: express.Request, res: express.Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+
+        return res.json( courseServices.getFailingStudentsCourse(+req.params.courseId) )
+    }
+)
+//#endregion
+
 export default router

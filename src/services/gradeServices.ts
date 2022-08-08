@@ -3,30 +3,6 @@ import * as studentServices from './studentServices'
 import { Grades, TheoricalGrades, TheoricalPracticalGrades } from '../models/grades'
 import { TypeCourse } from '../models/enums'
 
-export const getAllInfo = (): any => {
-    const courses = courseServices.getCourses()
-
-    let allInfo: any[] = []
-
-    courses.map(course => {
-        let studentsInfo: any[] = []
-        course.getStudents().map(s => {
-            let student = studentServices.findByCode(s.studentCode)
-            studentsInfo.push({
-                ...s,
-                name: student?.getName(),
-                lastName: student?.getLastName()
-            })
-        })
-
-        allInfo.push(
-            {...course,
-            students: studentsInfo
-        })
-    })
-
-    return allInfo
-}
 
 export const studentEnrolledIn = (studentCode: number, courseId: number): boolean => {
     const student = studentServices.findByCode(studentCode)
@@ -35,29 +11,39 @@ export const studentEnrolledIn = (studentCode: number, courseId: number): boolea
 }
 
 export const enrollStudent = (info: any): Grades => {
-    const course =  courseServices.findById(info.courseId)
+    const courses = courseServices.getCourses()
+    const course = courses.find(c => c.getId() === info.courseId)
 
     const grades = (course?.getTypeCourse() == TypeCourse.Theo)
         ? new TheoricalGrades(info.studentCode, info.grades)
         : new TheoricalPracticalGrades(info.studentCode, info.grades)
 
     course?.getStudents().push(grades)
-    studentServices.findByCode(info.studentCode)?.getCourses().push(info.courseId)
+    courseServices.saveData(courses)
+
+    const students = studentServices.getStudents()
+    const student = students.find(s => s.getCode() == info.studentCode)
+    student?.getCourses().push(info.courseId)
+    studentServices.saveData(students)
 
     return grades
 }
 
 export const delistStudent = (info: any): any => {
-    const courseStudents = courseServices.findById(info.courseId)?.getStudents()
-    const student = studentServices.findByCode(info.studentCode)
-
+    const courses = courseServices.getCourses()
+    const courseStudents = courses.find(c => c.getId() === info.courseId)?.getStudents()
+    
     const delistedStudent = courseStudents?.splice( 
         courseStudents.findIndex(g => g.studentCode === info.studentCode), 1 
     )[0]
-    
+    courseServices.saveData(courses)
+      
+    const students = studentServices.getStudents()
+    const student = students.find(s => s.getCode() == info.studentCode)
     const course = student?.getCourses().splice(
         student.getCourses().findIndex(c => c === info.courseId), 1
     )
+    studentServices.saveData(students)
 
     return {...delistedStudent, courseId: course}
 }
@@ -83,5 +69,20 @@ export const calculateStudentAvg = (code: number): number => {
 
     studentAvg = studentAvg / totalCredits
 
-    return studentAvg
+    return studentAvg | 0
+}
+
+export const completeCourseInfo = (course: any): any => {
+    let studentsInfo: any[] = []
+
+    course.students.map((s: any) => {
+        let student = studentServices.findByCode(s.studentCode)
+        studentsInfo.push({
+            ...s,
+            name: student?.getName(),
+            lastName: student?.getLastName()
+        })
+    })
+
+    return { ...course, students: studentsInfo }
 }
