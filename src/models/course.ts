@@ -25,14 +25,22 @@ import { Grades } from "./grades"
         return this.name
     }
 
+    public setName(name : string) {
+        this.name = name;
+    }
+    
     public getTypeCourse(): TypeCourse {
         return this.typeCourse
     }
 
-    public getCredis(): number {
+    public getCredits(): number {
         return this.credits
     }
 
+    public setCredits(credits : number) {
+        this.credits = credits;
+    }
+    
     public getStudents(): Array<Grades> {
         return this.students
     }
@@ -40,5 +48,4 @@ import { Grades } from "./grades"
     public enrollStudent(studentGrades: Grades): void {
         this.students.push(studentGrades)
     }
-
 }

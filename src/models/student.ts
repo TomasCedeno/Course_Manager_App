@@ -20,8 +20,18 @@ export class Student {
         return this.name
     }
 
+    
+    public setName(name : string) {
+        this.name = name;
+    }
+    
+
     public getLastName(): string {
         return this.lastName
+    }
+
+    public setLastName(lastName : string) {
+        this.lastName = lastName
     }
 
     public getCourses(): Array<number> {
