@@ -183,6 +183,12 @@ tbody tr td.acao {
   border-right: none;
 }
 
+.modal select{
+  font-size: 15px;
+  margin: 17px 0 17px 15px;
+  padding: 6px;
+}
+
 .modal button {
   width: 100%;
   margin: 10px auto;
@@ -247,20 +253,4 @@ td button i:first-child {
   color: white;
   background-color: rgb(57, 57, 226);
   margin-right: 20px;
-}
-
-
-nav {
-  align-self: flex-start;
-  justify-self: flex-start;
-  height: 70px;
-  width: 100%;
-  background-color: rgb(57, 57, 226);
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-
-nav .links {
-  min-width: 50%;
 }

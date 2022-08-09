@@ -20,11 +20,14 @@ async function openModal(edit = false, studentCode = 0) {
         }
     }
 
-    course = await getCourse()
+    const course = await getCourse()
+    typeCourse = course.typeCourse
     grades = course.students.find(g => g.studentCode == studentCode)
 
     if (edit) {
         document.querySelector('.modal-container form #code').disabled = true
+        document.querySelector('.modal-container form #lab').disabled = (typeCourse=='teórico')
+        btnAdd.innerHTML = 'Guardar Notas'
         inputCode.value = grades.studentCode
         inputGrade1.value = grades.grade1
         inputGrade2.value = grades.grade2
@@ -33,6 +36,8 @@ async function openModal(edit = false, studentCode = 0) {
         id = studentCode
     } else {
         document.querySelector('.modal-container form #code').disabled = false
+        document.querySelector('.modal-container form #lab').disabled = (typeCourse=='teórico')
+        btnAdd.innerHTML = 'Inscribir Estudiante'
         inputCode.value = ''
         inputGrade1.value = ''
         inputGrade2.value = ''

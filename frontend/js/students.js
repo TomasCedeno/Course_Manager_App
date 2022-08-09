@@ -21,12 +21,14 @@ async function openModal(edit = false, code = 0) {
 
     if (edit) {
         document.querySelector('.modal-container form #code').disabled = true
+        btnAdd.innerHTML = 'Guardar Cambios'
         inputCode.value = student.code
         inputName.value = student.name
         inputLastName.value = student.lastName
         id = code
     } else {
         document.querySelector('.modal-container form #code').disabled = false
+        btnAdd.innerHTML = 'Crear Estudiante'
         inputCode.value = ''
         inputName.value = ''
         inputLastName.value = ''

@@ -23,6 +23,7 @@ async function openModal(edit = false, id = 0) {
     if (edit) {
         document.querySelector('.modal-container form #id').disabled = true
         document.querySelector('.modal-container form #type').disabled = true
+        btnAdd.innerHTML = 'Guardar Cambios'
         inputId.value = course.id
         inputName.value = course.name
         inputType.value = course.typeCourse
@@ -31,6 +32,7 @@ async function openModal(edit = false, id = 0) {
     } else {
         document.querySelector('.modal-container form #id').disabled = false
         document.querySelector('.modal-container form #type').disabled = false
+        btnAdd.innerHTML = 'Crear Curso'
         inputId.value = ''
         inputName.value = ''
         inputType.value = ''
