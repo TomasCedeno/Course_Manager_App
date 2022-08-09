@@ -38,7 +38,7 @@ export const getStudentsAvg = (): any[] => {
 
 //Obtener estudiantes ordenados por promedio
 export const getSortedStudents = (): any[] => {
-    return getStudentsAvg().sort((a, b) => a.studentAvg - b.studentAvg)
+    return getStudentsAvg().sort((a, b) => b.studentAvg - a.studentAvg)
 }
 
 //Obtener estudiantes con mejores 10 promedios

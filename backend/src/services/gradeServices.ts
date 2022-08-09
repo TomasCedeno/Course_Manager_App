@@ -67,9 +67,9 @@ export const calculateStudentAvg = (code: number): number => {
         studentAvg += (finalGrade||0)*(credits||0)
     })
 
-    studentAvg = studentAvg / totalCredits
+    studentAvg = +(studentAvg / totalCredits).toFixed(2)
 
-    return studentAvg | 0
+    return (studentAvg||0)
 }
 
 export const completeCourseInfo = (course: any): any => {

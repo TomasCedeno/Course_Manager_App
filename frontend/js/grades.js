@@ -91,7 +91,7 @@ function insertGrades(grades) {
 btnAdd.onclick = async (e) => {
 
     if (inputCode.value == '' || inputGrade1.value == '' || inputGrade2.value == '' 
-    || inputGrade3.value == '' || inputLab.value == '') {
+    || inputGrade3.value == '') {
         return
     }
 
@@ -142,9 +142,10 @@ const getCourse = async () => {
 
 const enrollStudent = async (grades) => {
     try {
-        const response = await axios.post('http://localhost:3000/grades/enroll/', grades)
+        const response = await axios.post('http://localhost:3000/grades/enroll', grades)
 
         const newGrades = response.data
+        console.log(response)
         alert(`Ahora el estudiante ${newGrades.studentCode} está inscrito en el curso ${newGrades.courseId}`)
     } catch (errors) {
         alert('Error al inscribir al estudiante')

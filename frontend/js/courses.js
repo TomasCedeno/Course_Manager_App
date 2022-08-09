@@ -135,7 +135,7 @@ const createCourse = async (course) => {
         const newCourse = response.data
         alert(`Se creó el curso con código ${newCourse.id}`)
     } catch (errors) {
-        alert('Error al crear el curso')
+        alert('Ya existe un curso con ese código.')
         console.log(errors)
     }
 

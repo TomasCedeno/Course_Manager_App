@@ -60,7 +60,7 @@ function insertStudent(student) {
     <td>${student.code}</td>
     <td>${student.name}</td>
     <td>${student.lastName}</td>
-    <td class="acao">0</td>
+    <td class="acao">${student.studentAvg}</td>
     <td class="acao">${student.courses.length}</td>
     <td class="acao">
       <button onclick="editStudent(${student.code})"><i class='bx bx-edit' ></i></button>
