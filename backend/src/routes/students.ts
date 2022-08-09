@@ -7,7 +7,7 @@ const router = express.Router()
 
 //#region OBTENER A TODOS LOS ESTUDIANTES
 router.get('/', (_req, res)=>{
-    res.send(studentServices.getStudents())
+    res.send(studentServices.getStudentsAvg())
 })
 //#endregion
 
